@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 class XPlot(Plot):
-    def op(self,xlim=None):
+    def xpoints(self,xlim=None):
         '''
         Plot special points as vertial lines.
         Intended for time series, but can be modified for any x axis (just remove pd.to_datetime)

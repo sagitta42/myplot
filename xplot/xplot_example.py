@@ -7,7 +7,7 @@ p = XPlot((10,8))
 
 df.plot(ax = p.ax, style='.-')
 
-p.op()
+p.xpoints()
 p.legend(True,2)
 p.pretty()
 
