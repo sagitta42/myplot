@@ -4,12 +4,12 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 class Plot:
-    def __init__(self,figsize,n=1):
+    def __init__(self,figsize,n=1,sharex=True):
         '''
         figsize: [tuple|list] figure size (e.g. (10,8))
         n: [int] number of subplots
         '''
-        fig, ax = plt.subplots(n,figsize=figsize, sharex=True)
+        fig, ax = plt.subplots(n,figsize=figsize, sharex=sharex)
         self.fig = fig
          # convenient if only have one subplot (not ty type axes[0] all the time)
         self.ax = ax
