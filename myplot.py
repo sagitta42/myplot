@@ -36,9 +36,8 @@ class Plot:
                 ax.legend(ncol=ncol)
 
 
-    def pretty(self, grid='major'):
+    def pretty(self, large=3, grid='major'):
         ''' Increase font size everywhere, add grid lines '''
-        large = 3 # change this in case you want a "large mode", will increase the sizes everywhere
         ## increase tick sizes (numbers)
         for ax in self.axes:
             for t in ax.get_xaxis().get_ticklabels():
