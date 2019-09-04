@@ -2,6 +2,9 @@
 
 import matplotlib
 import matplotlib.pyplot as plt
+import sys
+
+save = 'save' in sys.argv
 
 class Plot:
     def __init__(self,figsize,n=1,sharex=True):
@@ -64,6 +67,15 @@ class Plot:
 
         ## remove white borders around the plot
         self.fig.tight_layout(rect=[0,0,1,0.97])
+
+
+    def figure(self, name):
+        self.pretty()
+
+        if save:
+            self.fig.savefig(name)
+        else:
+            plt.show()
 
 
     def add_axis(self, ax):
