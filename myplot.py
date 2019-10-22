@@ -20,7 +20,7 @@ class Plot:
         self.axes = ax if n > 1 else [ax]
 
 
-    def legend(self, out=False, ncol=1):
+    def legend(self, out=False, ncol=1, pos=None):
         '''
         out: [True|False] If True, draw one legend outside of the plot, else inside (on each subplot)
         ncol: [int] number of columns
@@ -35,8 +35,11 @@ class Plot:
                 legend.remove()
         else:
             # draw legend on each axis
-            for ax in self.axes:
-                ax.legend(ncol=ncol)
+            # in case these are not subplots, but one plot with two y axes, legends might crash
+            # -> choose given location
+            for i in range(len(self.axes)):
+                loc = pos[i] if pos else None
+                self.axes[i].legend(ncol=ncol, loc=loc)
 
 
     def pretty(self, large=3, grid='major'):
@@ -69,12 +72,15 @@ class Plot:
         self.fig.tight_layout(rect=[0,0,1,0.97])
 
 
-    def figure(self, name):
-        self.pretty()
+    def figure(self, name=None):
+        self.pretty(2)
+        print 'Image:', name
 
         if save:
             self.fig.savefig(name)
+            print '(saved)'
         else:
+            print '(NOT SAVED)'
             plt.show()
 
 
