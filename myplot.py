@@ -44,8 +44,15 @@ class Plot:
 
     def pretty(self, large=3, grid='major'):
         ''' Increase font size everywhere, add grid lines '''
-        ## increase tick sizes (numbers)
+
         for ax in self.axes:
+            ## make better x and y limits
+            xlim = ax.get_xlim()
+            ylim = ax.get_ylim()
+            ax.set_xlim(xlim[0]*0.9, xlim[1]*1.1)
+            ax.set_ylim(ylim[0]*0.9, ylim[1]*1.1)
+
+            ## increase tick sizes (numbers)
             for t in ax.get_xaxis().get_ticklabels():
                 t.set_fontsize(15 + large)
             for t in ax.get_yaxis().get_ticklabels():
@@ -55,6 +62,7 @@ class Plot:
             ax.get_xaxis().get_label().set_fontsize(17 + large)
             ax.get_yaxis().get_label().set_fontsize(17 + large)
             ax.title.set_fontsize(20)
+
             ## increase legend font
             if ax.get_legend():
                 for t in ax.get_legend().get_texts():
@@ -67,6 +75,8 @@ class Plot:
         for t in self.fig.get_children():
             if type(t) == matplotlib.text.Text:
                 t.set_fontsize(20)
+
+
 
         ## remove white borders around the plot
         self.fig.tight_layout(rect=[0,0,1,0.97])
