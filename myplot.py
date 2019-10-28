@@ -47,10 +47,12 @@ class Plot:
 
         for ax in self.axes:
             ## make better x and y limits
-            xlim = ax.get_xlim()
-            ylim = ax.get_ylim()
-            ax.set_xlim(xlim[0]*0.9, xlim[1]*1.1)
-            ax.set_ylim(ylim[0]*0.9, ylim[1]*1.1)
+            xlim = list(ax.get_xlim())
+            ylim = list(ax.get_ylim())
+            xlim[0] = - xlim[1]*0.1 if xlim[0] == 0 else xlim[0]*0.9
+            ylim[0] = - ylim[1]*0.1 if ylim[0] == 0 else ylim[0]*0.9
+            ax.set_xlim(xlim[0], xlim[1]*1.1)
+            ax.set_ylim(ylim[0], ylim[1]*1.1)
 
             ## increase tick sizes (numbers)
             for t in ax.get_xaxis().get_ticklabels():
