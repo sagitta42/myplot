@@ -42,17 +42,18 @@ class Plot:
                 self.axes[i].legend(ncol=ncol, loc=loc)
 
 
-    def pretty(self, large=3, grid='major'):
+    def pretty(self, large=3, stretch = False, grid='major'):
         ''' Increase font size everywhere, add grid lines '''
 
         for ax in self.axes:
             ## make better x and y limits
-            xlim = list(ax.get_xlim())
-            ylim = list(ax.get_ylim())
-            xlim[0] = - xlim[1]*0.1 if xlim[0] == 0 else xlim[0]*0.9
-            ylim[0] = - ylim[1]*0.1 if ylim[0] == 0 else ylim[0]*0.9
-            ax.set_xlim(xlim[0], xlim[1]*1.1)
-            ax.set_ylim(ylim[0], ylim[1]*1.1)
+            if stretch:
+                xlim = list(ax.get_xlim())
+                ylim = list(ax.get_ylim())
+                xlim[0] = - xlim[1]*0.1 if xlim[0] == 0 else xlim[0]*0.9
+                ylim[0] = - ylim[1]*0.1 if ylim[0] == 0 else ylim[0]*0.9
+                ax.set_xlim(xlim[0], xlim[1]*1.1)
+                ax.set_ylim(ylim[0], ylim[1]*1.1)
 
             ## increase tick sizes (numbers)
             for t in ax.get_xaxis().get_ticklabels():
@@ -66,8 +67,10 @@ class Plot:
             ax.title.set_fontsize(20)
 
             ## increase legend font
-            if ax.get_legend():
-                for t in ax.get_legend().get_texts():
+            legend = ax.get_legend()
+            if legend:
+                if legend.get_title(): legend.get_title().set_fontsize(19 + large)
+                for t in legend.get_texts():
                     t.set_fontsize(17 + large)
 
             ## add gridlines
@@ -85,7 +88,7 @@ class Plot:
 
 
     def figure(self, name=None):
-        self.pretty(2)
+        #self.pretty(2)
         print 'Image:', name
 
         if save:
