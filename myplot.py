@@ -3,6 +3,8 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import sys
+# import numpy as np
+import pandas as pd
 
 save = 'save' in sys.argv
 
@@ -61,7 +63,6 @@ class Plot:
 
                 ylim[0] = - ylim[1]*0.1 if ylim[0] == 0 else ylim[0]*0.9
 
-                print xlim[0], xlim[1]
                 ax.set_xlim(xlim[0], xlim[1])
                 ax.set_ylim(ylim[0], ylim[1]*1.1)
 

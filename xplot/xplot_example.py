@@ -11,6 +11,4 @@ p.xpoints()
 p.legend(True,2)
 p.pretty()
 
-plt.savefig('xplot_example.png')
-
-plt.show()
+p.figure('xplot_example.png')

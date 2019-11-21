@@ -1,1 +1,1 @@
-/home/mariia/python/myplot/myplot.py
+../myplot.py

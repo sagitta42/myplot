@@ -1,11 +1,15 @@
+# Myplot framework
+
+Consists of two main parts, **myplot** and **xplot** (inherits from myplot)
+
 # myplot
 
-Plot class for quick prettification of plots. Example:
+Plot class **```Plot```** for quick prettification of plots. Example:
 
 ```python
 from myplot import *
 
-p = Myplot((10,8)) # canvas size
+p = Plot((10,8)) # canvas size
 
 plt.plot(x, y, label = 'shrubbery')
 
@@ -13,8 +17,6 @@ p.legend(out=True, ncol=2) # create legend
 p.pretty() # make everything pretty
 p.figure('name.png') # save figure or display plot
 ```
-
-Let's call it ```example.py```
 
 ## Legend
 
@@ -88,3 +90,21 @@ Method ```add_axis()``` adds a second Y axis. Arguments:
 - ax [None|pyplot Axis]: axis to add. If None, a second axis is created automatically as a twin of the first axis. In case of two subplots, it will create a second Y axis only for the first subplot. So if you want to add two Y axis for both subplots, create them "externally" and add by passing them to this function. Maybe this should be improved in the future to be automatic as well, by simply asking the number of secondary Y axes
 
 Example usage in ```example_second_axis.py```
+
+
+# xplot
+
+Plot class ```XPlot``` with an additional method that allows plotting vertical lines at given points. Useful for plots that are "chronological", to show evolution of something in time and correlations with certain events.
+
+Has only one additional method: ```xpoints()```. The method reads an array of x points called ```XP``` which is stored in ```xpoints.py``` (modify as you wish).
+
+Arguments:
+
+- xdate [True|False]: x axis is datetime
+
+- xlim [None|number|string (date)]: starting from which x value we plot the vertical lines (default None means plot all the points in ```XP```)
+
+- axis ['all'|int]: 'all' means the vertical lines will be plotted on each subplot; if an integer is given, they are plotted only on that axis number.
+
+
+Example usage is shown in ```xplot_example.py``` (```xplot_example.png```)
