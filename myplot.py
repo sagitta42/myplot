@@ -42,17 +42,27 @@ class Plot:
                 self.axes[i].legend(ncol=ncol, loc=loc)
 
 
-    def pretty(self, large=3, stretch = False, grid='major'):
+    def pretty(self, large=3, stretch = None, grid='major'):
         ''' Increase font size everywhere, add grid lines '''
 
         for ax in self.axes:
             ## make better x and y limits
             if stretch:
                 xlim = list(ax.get_xlim())
+                print xlim[0], xlim[1]
+
                 ylim = list(ax.get_ylim())
-                xlim[0] = - xlim[1]*0.1 if xlim[0] == 0 else xlim[0]*0.9
+                if stretch == 'float':
+                    xlim[0] = - xlim[1]*0.1 if xlim[0] == 0 else xlim[0]*0.9
+                    xlim[1] = xlim[1]*0.9 if xlim[0] == 0 else xlim[1] + xlim[0]*0.1
+                elif stretch == 'year':
+                    xlim[0] = xlim[0] - 1
+                    xlim[1] = xlim[1] + 1
+
                 ylim[0] = - ylim[1]*0.1 if ylim[0] == 0 else ylim[0]*0.9
-                ax.set_xlim(xlim[0], xlim[1]*1.1)
+
+                print xlim[0], xlim[1]
+                ax.set_xlim(xlim[0], xlim[1])
                 ax.set_ylim(ylim[0], ylim[1]*1.1)
 
             ## increase tick sizes (numbers)
