@@ -11,8 +11,9 @@ save = 'save' in sys.argv
 class Plot:
     def __init__(self,figsize,n=1,sharex=True):
         '''
-        figsize: [tuple|list] figure size (e.g. (10,8))
-        n: [int] number of subplots
+        figsize [(w,h)]: tuple with figure width x height
+        n [int]: number of subplots
+
         '''
         fig, ax = plt.subplots(n,figsize=figsize, sharex=sharex)
         self.fig = fig
@@ -24,13 +25,18 @@ class Plot:
 
     def legend(self, out=False, ncol=1, pos=None):
         '''
-        out: [True|False] If True, draw one legend outside of the plot, else inside (on each subplot)
-        ncol: [int] number of columns
+        Create a customized legend.
+
+        out [True|False]: legend outside of the plot in the bottom (default False)
+        ncol [int]: number of columns in the legend (default 1)
+        pos [list of int|string]: position of the legend (default "best").
+            Important for plotting with a second Y axis (see below)
         '''
 
         if out:
             # draw legend at the bottom
-            self.axes[-1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), fancybox=True, shadow=False, ncol=ncol,fontsize=15)
+            self.axes[-1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.25),\
+                fancybox=True, shadow=False, ncol=ncol,fontsize=15)
             # remove legends from all other subplots
             for ax in self.axes[:-1]:
                 legend = ax.legend()
@@ -45,7 +51,20 @@ class Plot:
 
 
     def pretty(self, large=3, stretch = None, grid='major'):
-        ''' Increase font size everywhere, add grid lines '''
+        '''
+        Make the plot pretty.
+
+        large [int]: controls fontsizes (default 3)
+        stretch [None|"float"|"year"] change x axis range (default None).
+            Useful for cases when the automatic ranges makes the leftmost and
+        rightmost point fall right at the frame and get "eaten up"
+            None: do not do anything
+            "float": increase the range by 10%
+            "year": increase the range by 1
+
+        grid ["major"|"minor"]: only major grid, or also minor;
+            same as the grid argument of the function ax.grid()
+        '''
 
         for ax in self.axes:
             ## make better x and y limits
@@ -99,6 +118,11 @@ class Plot:
 
 
     def figure(self, name=None):
+        '''
+        Show the plot or save an image.
+
+        name [string]: name of the figure to be saved (with extension)
+        '''
         #self.pretty(2)
         print 'Image:', name
 
@@ -114,7 +138,18 @@ class Plot:
 
 
     def add_axis(self, col=None, ax=None):
-        ''' Used in case a plot has two y axes and we create one additionally externally '''
+        '''
+        Add a second Y axis.
+
+        col [string]: colour of the axis. Can be useful to differentiate
+            the curves and see which one belongs to which Y axis
+        ax [None|pyplot Axis]: axis to add. If None, a second axis is created
+            automatically as a twin of the first axis. In case of two subplots,
+            it will create a second Y axis only for the first subplot.
+            So if you want to add two Y axis for both subplots, create them
+            "externally" and add by passing them to this function.
+        '''
+
         ax2 = ax if ax else self.ax.twinx()
         if col: ax2.tick_params(axis='y', colors=col)
         self.axes.append(ax2)

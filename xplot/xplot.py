@@ -7,7 +7,13 @@ class XPlot(Plot):
     def xpoints(self, xdate=True, xlim=None, axis='all'):
         '''
         Plot special points as vertial lines.
-        Intended for time series, but can be modified for any x axis (just remove pd.to_datetime)
+
+        xdate [True|False]: x axis is datetime
+        xlim [None|number|string (date)]: starting from which x value we plot
+            the vertical lines (default None means plot all the points in ```XP```)
+        axis ['all'|int]: 'all' means the vertical lines will be plotted on
+            each subplot; if an integer is given, they are plotted only on
+            that axis number.
         '''
 
         xlist = list(XP.keys())

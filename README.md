@@ -18,6 +18,14 @@ p.pretty() # make everything pretty
 p.figure('name.png') # save figure or display plot
 ```
 
+## Plot object
+
+Initialization has two arguments:
+
+- figsize [(w,h)]: tuple with figure width x height
+
+- n [int]: number of subplots
+
 ## Legend
 
 Method ```legend()``` allows quick management of legends. Arguments:
