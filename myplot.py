@@ -102,13 +102,18 @@ class Plot:
         print 'Image:', name
 
         if save:
-            self.fig.savefig(name)
-            print '(saved)'
+            if name:
+                self.fig.savefig(name)
+                print '(saved)'
+            else:
+                print "You didn't provide an image name!"
         else:
             print '(NOT SAVED)'
             plt.show()
 
 
-    def add_axis(self, ax):
+    def add_axis(self, col=None, ax=None):
         ''' Used in case a plot has two y axes and we create one additionally externally '''
-        self.axes.append(ax)
+        ax2 = ax if ax else self.ax.twinx()
+        if col: ax2.tick_params(axis='y', colors=col)
+        self.axes.append(ax2)
