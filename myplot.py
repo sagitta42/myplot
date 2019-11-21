@@ -70,15 +70,19 @@ class Plot:
             ## make better x and y limits
             if stretch:
                 xlim = list(ax.get_xlim())
-                print xlim[0], xlim[1]
 
                 ylim = list(ax.get_ylim())
                 if stretch == 'float':
-                    xlim[0] = - xlim[1]*0.1 if xlim[0] == 0 else xlim[0]*0.9
-                    xlim[1] = xlim[1]*0.9 if xlim[0] == 0 else xlim[1] + xlim[0]*0.1
+                    strength = 0.7
+                    xlim_orig = xlim[0]
+                    xlim[0] = - xlim[1] * strength if xlim[0] == 0 \
+                        else xlim[0] *(1 - strength)
+                    xlim[1] = xlim[1] * (1 - strength) if xlim_orig == 0\
+                        else xlim[1] + xlim_orig * strength
                 elif stretch == 'year':
                     xlim[0] = xlim[0] - 1
                     xlim[1] = xlim[1] + 1
+
 
                 ylim[0] = - ylim[1]*0.1 if ylim[0] == 0 else ylim[0]*0.9
 
