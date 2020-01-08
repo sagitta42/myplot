@@ -2,6 +2,12 @@
 
 Consists of two main parts, **myplot** and **xplot** (inherits from myplot)
 
+## Example
+
+| Default | With Myplot |
+| ------- | ----------- |
+| ![def](https://github.com/sagitta42/myplot/blob/master/example_img/one_subplot_default.png?raw=true) | ![my](https://github.com/sagitta42/myplot/blob/master/example_img/one_subplot_myplot.png?raw=true) |
+
 # myplot
 
 Plot class **```Plot```** for quick prettification of plots. Example:
