@@ -2,13 +2,18 @@
 
 Consists of two main parts, **myplot** and **xplot** (inherits from myplot)
 
-## Example
+## Examples
+
+### Example output    
 
 | Default | With Myplot |
 | ------- | ----------- |
 | ![def](https://github.com/sagitta42/myplot/blob/master/example_img/one_subplot_default.png?raw=true) | ![my](https://github.com/sagitta42/myplot/blob/master/example_img/one_subplot_myplot.png?raw=true) |
+| ![def1](https://github.com/sagitta42/myplot/blob/master/example_img/two_subplots_default.png?raw=true) | ![my1](https://github.com/sagitta42/myplot/blob/master/example_img/two_subplots_myplot.png?raw=true) |
 
-# myplot
+
+
+### Example usage
 
 Plot class **```Plot```** for quick prettification of plots. Example:
 
@@ -32,7 +37,7 @@ Initialization has two arguments:
 
 - n [int]: number of subplots
 
-## Legend
+### Legend
 
 Method ```legend()``` allows quick management of legends. Arguments:
 
@@ -61,7 +66,7 @@ p.legend(out=True,ncol=2)
 (gives ```two_subplots_myplot_outside.png```)
 
 
-## Pretty
+### Pretty
 
 Method ```pretty()``` allows quick beautification:
 
@@ -85,7 +90,7 @@ Arguments:
 
 Compare the same plot with (```one_subplot_myplot.png```) and without ```pretty()``` (```one_subplot_default.png```)
 
-## Figure
+### Figure
 
 If you run your plotting function with an argument 'save':
 
@@ -95,7 +100,7 @@ python example.py save
 
 It will save the figure with the filename that you provide as the argument. Otherwise it will simply display the plot.
 
-## Second Y axis
+### Second Y axis
 
 Method ```add_axis()``` adds a second Y axis. Arguments:
 
@@ -106,9 +111,10 @@ Method ```add_axis()``` adds a second Y axis. Arguments:
 Example usage in ```example_second_axis.py```
 
 
-# xplot
+## Xplot object
 
 Plot class ```XPlot``` with an additional method that allows plotting vertical lines at given points. Useful for plots that are "chronological", to show evolution of something in time and correlations with certain events.
+
 
 Has only one additional method: ```xpoints()```. The method reads an array of x points called ```XP``` which is stored in ```xpoints.py``` (modify as you wish).
 
@@ -120,5 +126,9 @@ Arguments:
 
 - axis ['all'|int]: 'all' means the vertical lines will be plotted on each subplot; if an integer is given, they are plotted only on that axis number.
 
+    
+### Example
 
 Example usage is shown in ```xplot_example.py``` (```xplot_example.png```)
+
+![xpl](https://github.com/sagitta42/myplot/blob/master/xplot/xplot_example.png?raw=true)
