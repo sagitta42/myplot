@@ -23,7 +23,7 @@ class Plot:
         self.axes = ax if n > 1 else [ax]
 
 
-    def legend(self, out=False, ncol=1, pos=None):
+    def legend(self, out=False, ncol=1, title=None, pos=None):
         '''
         Create a customized legend.
 
@@ -47,7 +47,7 @@ class Plot:
             # -> choose given location
             for i in range(len(self.axes)):
                 loc = pos[i] if pos else None
-                self.axes[i].legend(ncol=ncol, loc=loc)
+                self.axes[i].legend(ncol=ncol, loc=loc, title=title)
 
 
     def pretty(self, large=3, stretch = None, grid='major'):
