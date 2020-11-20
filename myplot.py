@@ -28,7 +28,7 @@ class Plot:
             rect_histy = [left + width + spacing, bottom, 0.2, height]
 
             # start with a rectangular Figure
-            self.fig = plt.figure(figsize=(8, 8))
+            self.fig = plt.figure(figsize=figsize)
             # main axis (square plot in the middle)
             self.axes = [plt.axes(rect_scatter)]
             self.axes[0].tick_params(direction='in', top=True, right=True)
@@ -38,13 +38,20 @@ class Plot:
             # plot at the side
             self.axes.append(plt.axes(rect_histy))
             self.axes[2].tick_params(direction='in', labelleft=False)
-        else:
+        elif type(n) == int:
             fig, ax = plt.subplots(n,figsize=figsize, sharex=sharex)
             self.fig = fig
             # convenient if only have one subplot (not ty type axes[0] all the time)
             self.ax = ax
             # array of all our axes; new axes get added here too (e.g. two subplots, one has 2 y axes, means in total 5 axes in the list)
             self.axes = list(ax) if n > 1 else [ax]
+        else:
+            self.fig = plt.figure(figsize=figsize)
+            
+            # e.g.[211, 223, 224]
+            self.axes = []
+            for subp in n:
+                self.axes.append(plt.subplot(subp))
 
 
     def legend(self, out=False, ncol=1, title=None, pos=None):
