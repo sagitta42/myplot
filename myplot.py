@@ -71,7 +71,7 @@ class Plot:
             # -> choose given location
             for i in range(len(self.axes)):
                 # loc = pos[i] if pos else None
-                if pos != None: loc = pos if type(pos) == int else pos[i]
+                if pos != None: loc = pos[i] if type(pos) == list else pos
                 else: loc = None
 
                 # loc = pos if type(pos) pos[i] if pos else None
