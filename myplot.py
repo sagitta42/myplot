@@ -6,7 +6,7 @@ import sys
 # import numpy as np
 import pandas as pd
 
-save = 'save' in sys.argv
+# save = 'save' in sys.argv
 
 class Plot:
     def __init__(self,figsize,n=1,sharex=False):
@@ -47,14 +47,14 @@ class Plot:
             self.axes = list(ax) if n > 1 else [ax]
         else:
             self.fig = plt.figure(figsize=figsize)
-            
+
             # e.g.[211, 223, 224]
             self.axes = []
             for subp in n:
                 self.axes.append(plt.subplot(subp))
 
 
-    def legend(self, out=False, ncol=1, title=None, pos=None):
+    def legend(self, out=False, ncol=1, title=None, pos=None, axes=None):
         '''
         Create a customized legend.
 
@@ -76,7 +76,8 @@ class Plot:
             # draw legend on each axis
             # in case these are not subplots, but one plot with two y axes, legends might crash
             # -> choose given location
-            for i in range(len(self.axes)):
+            indices = range(len(self.axes)) if axes == None else axes
+            for i in indices:
                 # loc = pos[i] if pos else None
                 if pos != None: loc = pos[i] if type(pos) == list else pos
                 else: loc = None
@@ -164,7 +165,7 @@ class Plot:
 
         ## remove white borders around the plot
         # self.fig.tight_layout()
-        if type(self.n) == int:
+        if type(self.n) != str:
             self.fig.tight_layout(rect=[0,0,1,0.97])
 
 
@@ -175,9 +176,9 @@ class Plot:
         name [string]: name of the figure to be saved (with extension)
         '''
         #self.pretty(2)
-        print ('Image:', name)
+        print('Image:', name)
 
-        if save:
+        if 'save' in sys.argv:
             if name:
                 self.fig.savefig(name)
                 print ('(saved)')
